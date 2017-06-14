@@ -1,15 +1,18 @@
 import Vue from 'vue'
+import Buefy from 'buefy'
+import 'buefy/lib/buefy.css'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import Home from '@/components/Home'
 
 Vue.use(Router)
+Vue.use(Buefy)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'Home',
+      component: Home
     }
   ]
 })
