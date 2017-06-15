@@ -1,22 +1,19 @@
 <template>
   <div class="budget">
-    <h3>Balance: {{ balance }}</h3>
-    <h3>New Value: {{ newValue }}</h3>
+    <h3>Net Worth: {{ balance | currency }}</h3>
+    <h3>Next Transaction: {{ newValue | currency }}</h3>
     <input v-on:keyup.enter="addValue" class="input is-success" type="text" v-model.number="newValue" />
     <button
       @click="addValue"
       >Add Value</button>
     <div class="columns">
       <div class="column">
-        <h2>Entertainment</h2>
         <app-ent-card></app-ent-card>
       </div>
       <div class="column">
-        <h2>Food</h2>
         <app-food-card></app-food-card>
       </div>
       <div class="column">
-        <h2>Tools</h2>
         <app-tool-card></app-tool-card>
       </div>
     </div>
@@ -24,6 +21,7 @@
 </template>
 
 <script>
+  import store from './../store/store';
   import EntertainmentCard from './EntertainmentCard';
   import FoodCard from './FoodCard';
   import ToolCard from './ToolCard';

@@ -1,50 +1,53 @@
 <template>
   <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="./../assets/foodCard.jpg" alt="Image">
-      </figure>
-    </div>
+    <header class="card-header">
+      <p class="card-header-title">
+        Food Budget
+        <figure class="image is-48x48">
+          <img src="./../assets/foodCard.jpg" alt="Image">
+        </figure>
+      </p>
+      <a class="card-header-icon">
+        <span class="icon">
+          <i class="fa fa-angle-down"></i>
+        </span>
+      </a>
+    </header>
     <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-48x48">
-            <img src="./../assets/foodCard.jpg" alt="Image">
-          </figure>
-        </div>
-        <div class="media-content">
-          <p class="title is-4">John Smith</p>
-          <p class="subtitle is-6">@johnsmith</p>
-        </div>
-      </div>
-
       <div class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-        <a>#css</a> <a>#responsive</a>
-        <br>
-        <small>11:09 PM - 1 Jan 2016</small>
+        Food Balance
+        <app-balance></app-balance>
       </div>
     </div>
+    <footer class="card-footer">
+      <a class="card-footer-item">% To Date</a>
+      <a class="card-footer-item">Compare To Previous</a>
+      <a class="card-footer-item">+/- Annual Budget</a>
+      <a class="card-footer-item">+/- Monthly Budget</a>
+    </footer>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'budget',
-  data () {
-    return {
-      balance: 0,
-      newValue: 0
-    }
-  },
-  methods: {
-    addValue(){
-      console.log(this.newValue);
-      this.balance += this.newValue;
+  import Balance from './balance';
+  export default {
+    name: 'budget',
+    data () {
+      return {
+        balance: 0,
+        newValue: 0
+      }
+    },
+    components: {
+      appBalance: Balance
+    },
+    methods: {
+      addValue(){
+        console.log(this.newValue);
+        this.balance += this.newValue;
+      }
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
