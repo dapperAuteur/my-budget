@@ -1,44 +1,66 @@
 <template>
   <div class="budget">
-    <h3>Balance: {{ balance }}</h3>
-    <h3>New Value: {{ newValue }}</h3>
+    <h3>Net Worth: {{ balance | currency }}</h3>
+    <h2>{{ totalBudget | currency }}</h2>
+    <h3>Next Transaction: {{ newValue | currency }}</h3>
     <input v-on:keyup.enter="addValue" class="input is-success" type="text" v-model.number="newValue" />
     <button
       @click="addValue"
       >Add Value</button>
     <div class="columns">
       <div class="column">
-        <h2>Entertainment</h2>
         <app-ent-card></app-ent-card>
       </div>
       <div class="column">
-        <h2>Food</h2>
         <app-food-card></app-food-card>
       </div>
       <div class="column">
-        <h2>Tools</h2>
         <app-tool-card></app-tool-card>
       </div>
+    </div>
+    <div>
+      <h2>Transactions</h2>
+      <app-transactions></app-transactions>
     </div>
   </div>
 </template>
 
 <script>
+  import store from './../store/store';
   import EntertainmentCard from './EntertainmentCard';
   import FoodCard from './FoodCard';
   import ToolCard from './ToolCard';
+  import Transactions from './Transactions';
   export default {
     name: 'budget',
     data () {
       return {
         balance: 0,
+        budget: {},
+        entBud: {},
+        foodBud: {},
+        toolBud: {},
+        // totalBudget: this.entBud.budget + this.foodBud.budget + this.toolBud.budget,
         newValue: 0
       }
+    },
+    created(){
+      this.budget = this.$store.getters.budget;
+      this.entBud = this.budget[0].budget;
+      this.foodBud = this.budget[1].budget;
+      this.toolBud = this.budget[2].budget;
+      this.totalBudget = this.entBud + this.foodBud + this.toolBud
     },
     components: {
       appEntCard: EntertainmentCard,
       appFoodCard: FoodCard,
       appToolCard: ToolCard,
+      appTransactions: Transactions
+    },
+    computed: {
+      tranx(){
+        return this.$store.getters.transactions;
+      }
     },
     methods: {
       addValue(){
