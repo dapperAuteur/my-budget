@@ -6,6 +6,9 @@ import balance from './modules/balance';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
+  modules: {
+    balance
+  },
   state: {
     budget: {},
     entertainmentBudget: {},

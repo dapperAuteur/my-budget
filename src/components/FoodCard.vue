@@ -16,7 +16,9 @@
     <div class="card-content">
       <div class="content">
         Food Balance
-        <app-balance></app-balance>
+        <app-balance :bud="bud"></app-balance>
+        <h3>Last Transaction</h3>
+        <button>Transaction List</button>
       </div>
     </div>
     <footer class="card-footer">
@@ -35,11 +37,16 @@
     data () {
       return {
         balance: 0,
-        newValue: 0
+        newValue: 0,
+        transactions: []
       }
     },
     components: {
       appBalance: Balance
+    },
+    created(){
+      // this.budget = this.$store.getters.foodBudget;
+      this.bud = this.$store.getters.foodBudget.budget;
     },
     methods: {
       addValue(){

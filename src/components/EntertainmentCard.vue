@@ -16,7 +16,7 @@
     <div class="card-content">
       <div class="content">
         Entertainment Balance
-        <app-balance></app-balance>
+        <app-balance :bud="bud"></app-balance>
         <h3>Last Transaction</h3>
         <button>Transaction List</button>
       </div>
@@ -39,6 +39,9 @@
         balance: 0,
         newValue: 0
       }
+    },
+    created(){
+      this.bud = this.$store.getters.entertainmentBudget.budget;
     },
     components: {
       appBalance: Balance

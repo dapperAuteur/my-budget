@@ -6,7 +6,11 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  created() {
+    this.$store.dispatch('initTransactions');
+    this.$store.dispatch('initBudget');
+  }
 }
 </script>
 

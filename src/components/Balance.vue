@@ -1,12 +1,13 @@
 <template>
   <div class="card">
-    <h1>{{ balance | currency }}</h1>
+    <h1>{{ bud | currency }}</h1>
   </div>
 </template>
 
 <script>
 export default {
   name: 'budget',
+  props: ['bud'],
   data () {
     return {
       balance: 0,
